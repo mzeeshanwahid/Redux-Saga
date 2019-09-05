@@ -3,6 +3,7 @@ import { REQUEST_API_DATA, RECIEVE_API_DATA } from "../actions/types";
 import Axios from "axios";
 
 async function getTodosFromAPI() {
+    console.log("Waiting for Axios ....");
     let data = await Axios.get("https://jsonplaceholder.typicode.com/todos?userId=1");
     console.log("API Data", { ...data });
     return data;
@@ -10,7 +11,7 @@ async function getTodosFromAPI() {
 
 function* getTodos() {
     try {
-        console.log("Request");
+        console.log("API Request Done");
         let data = yield call(getTodosFromAPI);
         yield put({
             type: RECIEVE_API_DATA,
@@ -22,5 +23,6 @@ function* getTodos() {
 }
 
 export default function* todosSaga() {
+    console.log("Inside My Saga to Make API Request");
     yield takeLatest(REQUEST_API_DATA, getTodos);
 }

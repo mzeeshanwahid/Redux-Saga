@@ -8,6 +8,7 @@ class Home extends Component {
     componentDidMount(){
         //this.props.requestAPIData();
         console.log("Todos", this.props.todos);
+        console.log("Fetching Data...");
         this.props.fetchAPIData();
       }
 
